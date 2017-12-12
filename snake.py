@@ -9,9 +9,9 @@ import random
 import sys
 
 # The game grid contains this many cells in the x direction. A piece of food or a segment of the snake takes up one cell.
-GRID_WIDTH = 20
+GRID_WIDTH = 30
 # The game grid contains this many cells in the y direction. A piece of food or a segment of the snake takes up one cell.
-GRID_HEIGHT = 20
+GRID_HEIGHT = 30
 # The height and width of each square cell in pixels.
 PIXELS_IN_CELL = 30
 # The width of the game grid in pixels.
@@ -96,11 +96,11 @@ def snake_ran_out_of_bounds(snake):
     snake - list of 2-tuples representing the positions of each snake segment
     Note that the grid is GRID_WIDTH cells wide and GRID_HEIGHT cells high.
     """
-    if snake[0][0] > GRID_WIDTH:
+    if snake[0][0] >= GRID_WIDTH:
         return True
     if snake[0][0] < 0:
         return True
-    if snake[0][1] > GRID_HEIGHT:
+    if snake[0][1] >= GRID_HEIGHT:
         return True
     if snake[0][1] < 0:
         return True
@@ -145,10 +145,10 @@ def get_snake_speed(snake):
     The speed at the beginning of the game should be 5. Once the snake has eaten 10 pieces of food,
     the speed of the game should increase (by how much is up to you).
     """
-    if len(snake) >= 10:
+    if len(snake) < 15:
         return 5
-    if len(snake) >= 20:
-        return 15
+    else:
+        return 10
  
 
 def move_snake(snake, direction, food):
@@ -308,4 +308,3 @@ def start_game():
 
 # Start the snake game.
 start_game()
-
